@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import React, { useContext } from 'react'
-import { AuthContext } from '../AuthProvider'
+import { AuthContext } from '../../AuthProvider'
 import { TouchableOpacity } from 'react-native'
 
 const Home = ({ fontFamily, medium }) => {

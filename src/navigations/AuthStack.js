@@ -1,29 +1,62 @@
-import { View, Text } from 'react-native'
+import {  Text, Image } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import  Register from '../pages/Register';
-import  Login from '../pages/Login';
-import ForgotPassword from '../pages/ForgotPassword';
-import ForgotPasswordMessage from '../pages/ForgotPasswordMessage';
-
-
-
-
+import  Register from '../pages/Auth/Register';
+import  Login from '../pages/Auth/Login';
+import ForgotPassword from '../pages/Auth/ForgotPassword';
+import Splash from '../pages/Auth/Splash';
+import { useFonts } from "expo-font";
 const Stack = createStackNavigator();
 
 const AuthStack = () => {
-    
+  const [fontsLoaded] = useFonts({
+    "Outfit-Black": require("../../assets/fonts/Outfit-Black.ttf"),
+    "Outfit-Bold": require("../../assets/fonts/Outfit-Bold.ttf"),
+    "Outfit-Medium": require("../../assets/fonts/Outfit-Medium.ttf"),
+    "Outfit-Regular": require("../../assets/fonts/Outfit-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
 
   return (
-    <Stack.Navigator initialRouteName='Login' screenOptions={{
+    <Stack.Navigator initialRouteName='Splash'>
+      <Stack.Screen name="Splash" component={Splash} options={{
         headerShown: false
-    }}>
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-      <Stack.Screen name="ForgotPasswordMessage" component={ForgotPasswordMessage} screenOptions={{
-        headerLeft: null
       }} />
+      <Stack.Screen name="Register" component={Register} options={{
+        headerBackTitle: ' ',
+         headerTitle: () => (
+            <Text
+              style={{ fontFamily: 'Outfit-Medium', fontSize: 18 }}
+            >Login to your account</Text>
+          ),
+          headerBackImage: () => (
+              <Image
+                source={require('../../assets/images/arrow.png')}
+                style={{ width: 35, height: 35, marginLeft: 15 }}
+              />
+            ),
+            
+          }}/>
+      <Stack.Screen name="Login" component={Login} options={{
+        headerBackTitle: ' ',
+         headerTitle: () => (
+            <Text
+              style={{ fontFamily: 'Outfit-Medium', fontSize: 18 }}
+            >Login to your account</Text>
+          ),
+          headerBackImage: () => (
+              <Image
+                source={require('../../assets/images/arrow.png')}
+                style={{ width: 35, height: 35, marginLeft: 15 }}
+              />
+            ),
+            
+          }}/>
+      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
     </Stack.Navigator>
   )
 }

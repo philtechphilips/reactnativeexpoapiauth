@@ -9,11 +9,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useContext, useState } from "react";
-import image from "../../assets/images/logo.png";
 
 
 import { useFonts } from "expo-font";
-import { AuthContext } from "../AuthProvider";
+import { AuthContext } from "../../AuthProvider";
 
 const ForgotPassword = ({ fontFamily, medium, navigation }) => {
 
@@ -22,10 +21,10 @@ const ForgotPassword = ({ fontFamily, medium, navigation }) => {
 
 
   const [fontsLoaded] = useFonts({
-    "Outfit-Black": require("../../assets/fonts/Outfit-Black.ttf"),
-    "Outfit-Bold": require("../../assets/fonts/Outfit-Bold.ttf"),
-    "Outfit-Medium": require("../../assets/fonts/Outfit-Medium.ttf"),
-    "Outfit-Regular": require("../../assets/fonts/Outfit-Regular.ttf"),
+    "Outfit-Black": require("../../../assets/fonts/Outfit-Black.ttf"),
+    "Outfit-Bold": require("../../../assets/fonts/Outfit-Bold.ttf"),
+    "Outfit-Medium": require("../../../assets/fonts/Outfit-Medium.ttf"),
+    "Outfit-Regular": require("../../../assets/fonts/Outfit-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
