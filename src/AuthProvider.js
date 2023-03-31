@@ -65,9 +65,12 @@ export const AuthProvider = ({children}) => {
 
             SecureStore.setItemAsync('user', JSON.stringify(userResponse))
         }).catch(({errors}) => {
-            setError(errors[0])
+            setError(errors)
         })
     }
+
+ 
+
 
     const passwordForgot = (email) => {
         api().post('/forgot-password', {

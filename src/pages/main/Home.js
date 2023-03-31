@@ -1,21 +1,38 @@
-import { View, Text } from 'react-native'
-import React, { useContext } from 'react'
-import { AuthContext } from '../../AuthProvider'
-import { TouchableOpacity } from 'react-native'
+import { View, Text, Image } from "react-native";
+import React, { useContext } from "react";
+import { useFonts } from "expo-font";
+import BalanceCard from "../../components/home/BalanceCard";
+import { ScrollView } from "react-native";
+import Header from "../../components/home/Header";
+import Payments from "../../components/home/Payments";
+import RecentTransactions from "../../components/home/RecentTransactions";
 
-const Home = ({ fontFamily, medium }) => {
-  const {user, logOut} = useContext(AuthContext)
+const Home = () => {
+  const [fontsLoaded] = useFonts({
+    "Outfit-Black": require("../../../assets/fonts/Outfit-Black.ttf"),
+    "Outfit-Bold": require("../../../assets/fonts/Outfit-Bold.ttf"),
+    "Outfit-Medium": require("../../../assets/fonts/Outfit-Medium.ttf"),
+    "Outfit-Regular": require("../../../assets/fonts/Outfit-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text style={{ fontFamily: medium, fontSize: 16 }}>Hello</Text>
-      <Text style={{ fontFamily: fontFamily, fontSize: 24, marginTop: 10 }}>{user.name}
-      
-      </Text>
-      <TouchableOpacity onPress={() => logOut()}>
-        <Text style={{color: 'red', marginTop:20, fontWeight: 700, fontSize: 18 }}>Logout</Text>
-      </TouchableOpacity>
-    </View>
-  )
-}
+    <View style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 5, backgroundColor: '#fff' }}>
+      <Header />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <BalanceCard />
+        <Payments />
+        <RecentTransactions />
+      </ScrollView>
 
-export default Home
+      {/* <TouchableOpacity onPress={() => logOut()}>
+        <Text style={{color: 'red', marginTop:20, fontWeight: 700, fontSize: 18 }}>Logout</Text>
+      </TouchableOpacity> */}
+    </View>
+  );
+};
+
+export default Home;

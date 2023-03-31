@@ -19,6 +19,7 @@ const Register = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [password_confirmation, setPasswordConfirmation] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { register, error } = useContext(AuthContext);
 
@@ -33,6 +34,10 @@ const Register = ({ navigation }) => {
     return null;
   }
 
+  const onPress = () => {
+    register(name, email, password, password_confirmation)
+}
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -41,6 +46,7 @@ const Register = ({ navigation }) => {
       <ScrollView
         style={{ flex: 1, paddingHorizontal: 20, paddingVertical: 40 }}
       >
+        {error && <Text style={{ color: 'red', textAlign: 'center', fontFamily: "Outfit-Bold" }}>{error}</Text>}
         <View style={{ marginBottom: 20 }}>
           <Text style={{ marginBottom: 5, fontFamily: "Outfit-Regular" }}>
             Full Name
@@ -57,6 +63,7 @@ const Register = ({ navigation }) => {
             <TextInput
               placeholder="Enter Your Full Name"
               style={{ fontFamily: "Outfit-Regular" }}
+              onChangeText={text => setName(text)}
             />
           </View>
         </View>
@@ -78,6 +85,7 @@ const Register = ({ navigation }) => {
               placeholder="Email Address"
               keyboardType="email-address"
               style={{ fontFamily: "Outfit-Regular" }}
+              onChangeText={text => setEmail(text)}
             />
           </View>
         </View>
@@ -101,6 +109,7 @@ const Register = ({ navigation }) => {
               placeholder="Enter Password"
               secureTextEntry={showPassword ? false : true}
               style={{ fontFamily: "Outfit-Regular", flex: 7 }}
+              onChangeText={text => setPassword(text)}
             />
             <TouchableOpacity
               onPress={() => {
@@ -149,15 +158,16 @@ const Register = ({ navigation }) => {
           >
             <TextInput
               placeholder="Enter Password Again"
-              secureTextEntry={showPassword ? true : false}
+              secureTextEntry={showConfirmPassword ? false : true}
               style={{ fontFamily: "Outfit-Regular", flex: 7 }}
+              onChangeText={text => setPasswordConfirmation(text)}
             />
             <TouchableOpacity
               onPress={() => {
-                setShowPassword(!showPassword);
+                setShowConfirmPassword(!showConfirmPassword);
               }}
             >
-              {showPassword ? (
+              {showConfirmPassword ? (
                 <Text
                   style={{
                     fontFamily: "Outfit-Regular",
@@ -182,7 +192,7 @@ const Register = ({ navigation }) => {
           </View>
         </View>
 
-        <Button text="Create Account" />
+        <Button text="Create Account" press={onPress} />
       </ScrollView>
     </KeyboardAvoidingView>
   );

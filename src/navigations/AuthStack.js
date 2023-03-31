@@ -16,12 +16,13 @@ const AuthStack = () => {
     "Outfit-Regular": require("../../assets/fonts/Outfit-Regular.ttf"),
   });
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded) { 
     return null;
   }
 
 
   return (
+    
     <Stack.Navigator initialRouteName='Splash'>
       <Stack.Screen name="Splash" component={Splash} options={{
         headerShown: false

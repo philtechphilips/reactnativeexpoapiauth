@@ -6,20 +6,21 @@ import { AuthProvider } from "./src/AuthProvider";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <NavigationContainer>
+      <SafeAreaView style={styles.container}>
+        <NavigationContainer>
         <AuthProvider>
           <Stacknav />
         </AuthProvider>
-      </NavigationContainer>
+        </NavigationContainer>
 
-      <StatusBar style="auto" />
-    </SafeAreaView>
+        <StatusBar backgroundColor="#fff" barStyle="light-content" />
+      </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 20,
   },
 });
